@@ -30,7 +30,9 @@ const App = () => {
       if (!ethereum.current?.selectedAddress) {
         const MMSDK = new MetaMaskSDK({
           openDeeplink: link => {
-            Linking.openURL(link); // Use React Native Linking method or your favourite way of opening deeplinks
+            Linking.openURL(link).catch(() => {
+              //Do Nothing
+            }); // Use React Native Linking method or your favourite way of opening deeplinks
           },
           timer: BackgroundTimer, // To keep the app alive once it goes to background
           dappMetadata: {
@@ -195,7 +197,7 @@ const App = () => {
 export default App;
 
 const style = new StyleSheet.create({
-  screen: {justifyContent: 'center', flex: 1},
+  screen: {justifyContent: 'center', flex: 1, backgroundColor: 'white'},
   buttonStyle: {
     borderWidth: 1,
     padding: 5,
